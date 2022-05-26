@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @SpringBootApplication
-public class Service4Application {
+public class Neo4jJavaMicroserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Service4Application.class, args);
+		SpringApplication.run(Neo4jJavaMicroserviceApplication.class, args);
 	}
 
 }
@@ -32,7 +32,7 @@ class ReviewController {
 	private final ReviewRepository reviewRepo;
 
 	@GetMapping
-	String liveCheck() { return "Service4 is up"; }
+	String liveCheck() { return "Neo4j Java Microservice is up"; }
 
 	@GetMapping("/reviews")
 	Flux<Review> getReviews() { return reviewRepo.findFirst1000By(); }
