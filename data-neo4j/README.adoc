@@ -1,0 +1,55 @@
+= Data load for Neo4j graph database
+
+This folder contains steps and information for creating a free instance of Neo4j AuraDB and loading book, author, and review data into it.
+
+== Creating Neo4j instance with AuraDB free
+
+* Sign up and choose to create a https://bit.ly/neo4j-aura[free instance of AuraDB^].
+
+== Load the data into Neo4j
+
+The steps for loading Goodreads book, author, and review data are outlined below.
+
+* From the Neo4j AuraDB console, click on the `Query` button for your running free instance to open Neo4j Browser.
+* Copy/paste first section of `create_goodreads.cypher` (indexes) into the input box at the top and click the `play` button icon.
+* Copy/paste the rest of the `create_goodreads.cypher` file into the input box at the top and click the `play` button icon.
+
+*Note:* If you would like to load a larger portion of the data set, you can do so with AuraDB Pro tier, which costs around $130/month.
+This choice is entirely up to you.
+The data set and import statements for this are in the https://github.com/JMHReif/graph-demo-datasets/tree/main/goodreadsUCSD[graph-demo-datasets^] repository on Github.
+
+== Verify the data
+
+We can verify the data with the same tool we used to load it - Neo4j Browser (query editor).
+The following queries are some examples:
+
+** View the data model
+
+[source,cypher]
+----
+CALL apoc.meta.graph();
+----
+
+** Find some books
+
+[source,cypher]
+----
+MATCH (b:Book)
+RETURN b LIMIT 50;
+----
+
+** Find books and their authors
+
+[source,cypher]
+----
+MATCH (b:Book)<-[r:AUTHORED]-(a:Author)
+RETURN * LIMIT 50;
+----
+
+** Find some books with their related authors and reviews
+
+[source,cypher]
+----
+MATCH (a:Author)-[rel:AUTHORED]->(b:Book)<-[rel2:WRITTEN_FOR]-(r:Review)
+RETURN * LIMIT 50;
+----

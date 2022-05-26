@@ -1,0 +1,23 @@
+= Build a Java microservice with Neo4j AuraDB free
+
+This repository contains the following elements:
+
+* data-neo4j folder: Steps, file, and Cypher statements to load Goodreads data to Neo4j AuraDB free tier instance
+* service4: Java microservice that connects to Neo4j AuraDB free instance and retrieves book review data.
+
+== Steps to reproduce
+
+* Sign up to create a https://bit.ly/neo4j-aura[free Neo4j AuraDB instance^]
+* Follow the steps outlined in the `data-neo4j` folder's README to load the data into Neo4j
+* Clone this repository
+* Open the `service4` application in an IDE or editor
+* Modify the `application.properties` file in `service4/src/main/resources` folder
+* Run the application (via the IDE or command line)
+* Open a browser or a command line window to test the REST endpoints:
+** Browser: `localhost:8083/neo`, `localhost:8083/neo/reviews`, `localhost:8083/neo/reviews/178186`
+** Command line: `curl localhost:8083/neo`, `curl localhost:8083/neo/reviews`, `curl localhost:8083/neo/reviews/178186`
+
+== Resources
+
+* Data set: https://github.com/JMHReif/graph-demo-datasets/tree/main/goodreadsUCSD[Goodreads source^]
+* Code: https://github.com/JMHReif/microservices-java[Full Java microservices project^]
